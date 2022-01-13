@@ -10,4 +10,4 @@ Projemin içeriği :
 - 0 seçeneği programdan çıkış yapılmasını sağlar.
 - 0-9 haricinde kullanıcı başka bir karakter ya da sayı girerse program kullanıcıyı uyarmaktadır.
 
-Projenin işleyişi gösteren youtube video linki :
+Projenin işleyişi gösteren youtube video linki : https://youtu.be/M_5aclyUQOk
