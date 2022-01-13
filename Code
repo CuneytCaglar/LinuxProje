@@ -1,1 +1,67 @@
+#!/bin/sh
+zenity --list \
+--title "Linux Projesi" \
+--width 600 \
+--height 350 \
+--text "Lütfen 1'den 9'a kadar olan seçeneklerden birini seçiniz." \
+--column="No" --column="Tanım" \
+1 "Makine adını görüntüle" \
+2 "İşlemci ve işlem birimleri hakkında bilgileri görüntüle" \
+3 "Donanım listesini görüntüle" \
+4 "Donanım bilgilerini görüntüle" \
+5 "Pci veri yollarını ve bunlara bağlı cihazlarla ilgili ayrıntıları görüntüle" \
+6 "Sabit sürücüler ve optik sürücüleri görüntüle" \
+7 "Takılı dosya sistemlerini görüntüle" \
+8 "Ayrıntılı donanım bilgilerini görüntüle" \
+9 "USB detaylarını görüntüle" \
+0 "Programdan çıkış" \
 
+function projefunc
+{
+ echo ""
+ echo -n "Devam etmek için ENTER tuşuna basınız."
+ read
+ clear
+}
+
+selection=
+until [ "$selection" = "0" ]; do
+  zenity --info --no-wrap --text="Lütfen seçiminizi terminal üzerinden giriniz." \
+  --width 200 \
+  --height 100 \
+  
+ echo ""
+ echo "Program Menüsü"
+ echo "1-Makine adını görüntüle"
+ echo "2-İşlemci ve işlem birimleri hakkında bilgileri görüntüle"
+ echo "3-Donanım listesini görüntüle"
+ echo "4-Donanım bilgilerini görüntüle"
+ echo "5-Pci veri yollarını ve bunlara bağlı cihazlarla ilgili ayrıntıları görüntüle"
+ echo "6-Sabit sürücüler ve optik sürücüleri görüntüle"
+ echo "7-Takılı dosya sistemlerini görüntüle"
+ echo "8-Ayrıntılı donanım bilgilerini görüntüle"
+ echo "9-USB detaylarını görüntüle"
+ echo ""
+ echo "0-Programdan çıkış"
+ echo ""
+ echo -n "Seçiminizi giriniz: "
+ read selection
+ echo ""
+ case $selection in
+  1) uname ; projefunc ;;
+  2) lscpu ; projefunc ;;
+  3) lshw ; projefunc ;;
+  4) hwinfo ; projefunc ;;
+  5) lspci ; projefunc ;;
+  6) lsscsi ; projefunc ;;
+  7) mount | column -t ; projefunc ;;
+  8) inxi -Fx ; projefunc ;;
+  9) lsusb ; projefunc ;;
+  0) exit ;;
+  *) echo "Lütfen 1,2,3,4,5,6,7,8,9 ya da 0 değerini giriniz"; projefunc
+  esac
+  zenity --info --no-wrap --text="$selection . seçeneği seçtiniz. Yeni bir seçim için "OK" seçeneğine tıklayınız."  \
+  --width 200 \
+  --height 100 \
+  
+done
